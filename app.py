@@ -38,7 +38,7 @@ st.markdown("""
 if 'page' not in st.session_state:
     st.session_state.page = "介绍"
 if 'lang' not in st.session_state:
-    st.session_state.lang = 'zh'
+    st.session_state.lang = 'en'
 
 # 数据加载
 @st.cache_data(show_spinner="正在加载和预处理数据...")
@@ -72,7 +72,7 @@ with st.sidebar:
 
     # 语言选择（放在联系人之前，确保联系人会跟随语言即时更新）
     if 'lang' not in st.session_state:
-        st.session_state.lang = 'zh'
+        st.session_state.lang = 'en'
 
     lang_choice = st.radio(
         "语言 / Language",

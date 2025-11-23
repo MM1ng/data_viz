@@ -52,14 +52,20 @@ def render(df, tables, filters, lang: str = 'zh'):
         st.markdown("""
         ### 1. Time trend insights
 
-        - **Long-term changes**: We observe seasonal patterns and long-term trends in climate variables
-        - **Extreme events**: The data may contain records of extreme weather events
-        - **Periodicity**: Some variables show annual or seasonal cycles
+        - **Long-term changes**: Temperature and dew point show highly consistent trends, with clear seasonal fluctuations—higher in summer, lower in winter—reflecting typical seasonal patterns.
+        - **Extreme events**: Humidity fluctuates greatly, with high values in summer and lower in winter. Some months (e.g., July, August) show humidity peaks, possibly related to rainfall or weather systems.
+        - **Periodicity**: All three variables show annual cycles, and extreme values often appear during seasonal transitions, such as spring and autumn.
+        - **Data distribution**: No obvious abnormal extreme events are found; overall data distribution is stable and suitable for further correlation and pattern analysis.
 
         ### 2. Variable relationship insights
 
-        - **Correlation patterns**: Correlations reveal internal connections in the climate system
-        - **Causal clues**: Correlation does not imply causation but can guide further research
+
+        - **Correlation patterns**:
+            - Temperature and dew point show a very strong positive correlation (r=0.933), indicating highly consistent trends.
+            - Humidity and pressure have a moderate negative correlation (r≈-0.22~-0.24), meaning humidity tends to decrease as pressure rises.
+            - Visibility and humidity show a strong negative correlation (r=-0.63), i.e., higher humidity leads to lower visibility, which matches meteorological phenomena.
+            - Wind speed has weak correlations with other variables, indicating its changes are not strongly linked to temperature or humidity.
+        - **Causal clues**: While correlation does not imply causation, strongly correlated variables can be prioritized for further modeling and mechanism analysis.
 
         ### 3. Weather pattern insights
 
@@ -105,16 +111,22 @@ def render(df, tables, filters, lang: str = 'zh'):
         st.subheader("关键洞察总结")
         
         st.markdown("""
+
         ### 1. 时间趋势洞察
-        
-        - **长期变化**：通过时间序列分析，我们观察到气候变量存在明显的季节性模式和长期趋势
-        - **极端事件**：数据中可能包含极端天气事件的记录
-        - **周期性**：某些变量显示出年度或季节性的周期性变化
+
+        - **长期变化**：温度和露点整体趋势一致，呈现明显季节性波动，夏季升高、冬季降低，反映出典型的季节变化特征。
+        - **极端事件**：湿度波动较大，夏季高值明显，冬季略有下降，部分月份（如7月、8月）湿度峰值突出，可能与降水或天气系统有关。
+        - **周期性**：三个变量在年内均有周期性变化，极端值多出现在季节交替时段，如春季和秋季。
+        - **数据分布**：未发现明显异常极端事件，整体数据分布较为平稳，适合后续做相关性和模式分析。
         
         ### 2. 变量关系洞察
-        
-        - **相关性模式**：变量之间的相关性揭示了气候系统的内在联系
-        - **因果关系线索**：虽然相关性不等于因果关系，但可以为深入研究提供方向
+
+        - **相关性模式**：
+            - 温度（temperature）与露点（dew_point）之间呈现极强正相关（r=0.933），说明两者变化趋势高度一致。
+            - 湿度（humidity）与气压（pressure）之间存在中等负相关（r≈-0.22~-0.24），表明气压升高时湿度略有下降。
+            - 能见度（visibility）与湿度呈现较强负相关（r=-0.63），即湿度高时能见度降低，符合实际气象现象。
+            - 风速（wind_speed）与其他变量相关性较弱，说明风速变化与温度、湿度等关系不显著。
+        - **因果关系线索**：虽然相关性不等于因果关系，但强相关变量可作为后续建模和机制分析的重点对象。
         
         ### 3. 天气模式洞察
         
@@ -155,7 +167,6 @@ def render(df, tables, filters, lang: str = 'zh'):
         
         st.markdown("""
         - **扩展数据源**：整合更多数据源，提高数据完整性
-        - **机器学习**：应用ML模型进行预测和模式识别
+        - **机器学习**：应用ML模型进行预测和天气模式识别
         - **交互性**：增加更多交互式功能
-        - **移动优化**：优化移动设备体验
         """)

@@ -40,8 +40,25 @@ def render(df, tables, filters, lang: str = 'zh'):
     if 'timeseries' in tables and len(tables['timeseries']) > 0:
         st.subheader("Time series analysis" if lang == 'en' else "时间趋势分析")
         
+
+        if lang == 'zh':
+            st.markdown("""
+    **具体分析结论：**
+    - 温度和露点整体趋势一致，呈现明显季节性波动，夏季升高、冬季降低。
+    - 湿度波动较大，夏季高值明显，冬季略有下降，部分月份峰值突出。
+    - 三个变量均有周期性变化，极端值多出现在季节交替时段。
+    - 未发现明显异常极端事件，数据分布较平稳。
+    """)
+        elif lang == 'en':
+            st.markdown("""
+    **Detailed analysis:**
+    - Temperature and dew point show highly consistent trends, with clear seasonal fluctuations—higher in summer, lower in winter.
+    - Humidity fluctuates greatly, with high values in summer and lower in winter. Some months (e.g., July, August) show humidity peaks, possibly related to rainfall or weather systems.
+    - All three variables show annual cycles, and extreme values often appear during seasonal transitions, such as spring and autumn.
+    - No obvious abnormal extreme events are found; overall data distribution is stable and suitable for further correlation and pattern analysis.
+    """)
         numeric_cols = [col for col in tables['timeseries'].columns 
-                       if col not in ['date', 'date_only'] and pd.api.types.is_numeric_dtype(tables['timeseries'][col])]
+                   if col not in ['date', 'date_only'] and pd.api.types.is_numeric_dtype(tables['timeseries'][col])]
         
         if numeric_cols:
             selected_vars = st.multiselect(
