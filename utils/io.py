@@ -16,7 +16,7 @@ def load_data():
     
     if csv_files:
         df = pd.read_csv(csv_files[0])
-        st.success(f"已加载数据: {csv_files[0].name}")
+        # 不再在全局显示加载成功的横幅；侧边栏会显示更友好的数据信息
         return df
     else:
         st.warning("未找到数据文件，请将CSV文件放在data/目录下")

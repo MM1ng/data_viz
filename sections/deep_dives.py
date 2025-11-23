@@ -6,39 +6,42 @@ import pandas as pd
 import numpy as np
 from utils.viz import distribution_chart, box_plot, correlation_heatmap
 
-def render(df, tables, filters):
-    st.header("深入分析")
-    
+def render(df, tables, filters, lang: str = 'zh'):
+    if lang == 'en':
+        st.header("Deep Dives")
+    else:
+        st.header("深入分析")
+
     # 分布分析
-    st.subheader("变量分布分析")
-    
+    st.subheader("Variable distribution analysis" if lang == 'en' else "变量分布分析")
+
     numeric_cols = df.select_dtypes(include=[np.number]).columns.tolist()
-    
+
     if numeric_cols:
-        selected_var = st.selectbox("选择要分析的变量", numeric_cols, key="dist_var")
-        
+        selected_var = st.selectbox("Select variable to analyze" if lang == 'en' else "选择要分析的变量", numeric_cols, key="dist_var")
+
         col1, col2 = st.columns(2)
-        
+
         with col1:
-            fig_dist = distribution_chart(df, selected_var, title=f"{selected_var} 分布直方图")
+            fig_dist = distribution_chart(df, selected_var, title=(f"{selected_var} distribution histogram" if lang == 'en' else f"{selected_var} 分布直方图"))
             st.plotly_chart(fig_dist, use_container_width=True)
-        
+
         with col2:
-            st.markdown("### 统计摘要")
+            st.markdown("### Statistical summary" if lang == 'en' else "### 统计摘要")
             stats = df[selected_var].describe()
-            st.metric("均值", f"{stats['mean']:.2f}")
-            st.metric("中位数", f"{stats['50%']:.2f}")
-            st.metric("标准差", f"{stats['std']:.2f}")
-            st.metric("最小值", f"{stats['min']:.2f}")
-            st.metric("最大值", f"{stats['max']:.2f}")
+            st.metric("Mean" if lang == 'en' else "均值", f"{stats['mean']:.2f}")
+            st.metric("Median" if lang == 'en' else "中位数", f"{stats['50%']:.2f}")
+            st.metric("Std dev" if lang == 'en' else "标准差", f"{stats['std']:.2f}")
+            st.metric("Min" if lang == 'en' else "最小值", f"{stats['min']:.2f}")
+            st.metric("Max" if lang == 'en' else "最大值", f"{stats['max']:.2f}")
     
     # 天气类型分组比较
     if 'weather' in df.columns and numeric_cols:
-        st.subheader("天气类型分组比较")
-        
+        st.subheader("Weather type group comparison" if lang == 'en' else "天气类型分组比较")
+
         col1, col2 = st.columns(2)
         with col1:
-            value_var = st.selectbox("选择数值变量", numeric_cols, key="box_value")
+            value_var = st.selectbox("Select numeric variable" if lang == 'en' else "选择数值变量", numeric_cols, key="box_value")
         
         if value_var:
             # 限制天气类型数量
@@ -50,16 +53,16 @@ def render(df, tables, filters):
                 df_filtered,
                 'weather',
                 value_var,
-                title=f"{value_var} 按天气类型分组比较"
+                title=(f"{value_var} grouped by weather type" if lang == 'en' else f"{value_var} 按天气类型分组比较")
             )
             st.plotly_chart(fig_box, use_container_width=True)
     
     # 相关性分析
     if len(numeric_cols) > 1:
-        st.subheader("变量相关性分析")
-        
+        st.subheader("Variable correlation analysis" if lang == 'en' else "变量相关性分析")
+
         selected_vars = st.multiselect(
-            "选择要分析相关性的变量",
+            "Select variables to analyze correlation" if lang == 'en' else "选择要分析相关性的变量",
             numeric_cols,
             default=numeric_cols[:min(8, len(numeric_cols))],
             key="corr_vars"
@@ -69,7 +72,7 @@ def render(df, tables, filters):
             df_corr = df[selected_vars].dropna()
             
             if len(df_corr) > 0:
-                fig_corr = correlation_heatmap(df_corr, title="变量相关性矩阵")
+                fig_corr = correlation_heatmap(df_corr, title=("Variable correlation matrix" if lang == 'en' else "变量相关性矩阵"))
                 st.plotly_chart(fig_corr, use_container_width=True)
                 
                 # 找出最强相关性
@@ -83,7 +86,13 @@ def render(df, tables, filters):
                 
                 if abs(max_corr) > abs(min_corr):
                     pair = corr_matrix.stack().idxmax()
-                    st.success(f"**最强正相关**：{pair[0]} 和 {pair[1]} (r = {max_corr:.3f})")
+                    if lang == 'en':
+                        st.success(f"**Strongest positive correlation**: {pair[0]} and {pair[1]} (r = {max_corr:.3f})")
+                    else:
+                        st.success(f"**最强正相关**：{pair[0]} 和 {pair[1]} (r = {max_corr:.3f})")
                 else:
                     pair = corr_matrix.stack().idxmin()
-                    st.info(f"**最强负相关**：{pair[0]} 和 {pair[1]} (r = {min_corr:.3f})")
+                    if lang == 'en':
+                        st.info(f"**Strongest negative correlation**: {pair[0]} and {pair[1]} (r = {min_corr:.3f})")
+                    else:
+                        st.info(f"**最强负相关**：{pair[0]} 和 {pair[1]} (r = {min_corr:.3f})")
