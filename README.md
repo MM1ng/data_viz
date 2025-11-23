@@ -50,11 +50,192 @@ pip install -r requirements.txt
 4. **准备数据**
 
 从 [Kaggle数据集](https://www.kaggle.com/datasets/saadaliyaseen/climate-and-atmospheric-conditions-data/data) 下载数据文件，并将其放置在 `data/` 目录下。
-# 气候与大气条件数据故事仪表板 / Climate and Atmospheric Conditions - Story
+<table>
+	<tr>
+		<td style="vertical-align:top; padding:18px; width:50%;">
+			## 气候与大气条件数据故事仪表板
 
-本仓库包含一个基于 Streamlit 的交互式数据可视化仪表板，用于探索与讲述气候和大气条件相关的数据。
+			本仓库包含一个基于 Streamlit 的交互式数据可视化仪表板，用于探索与讲述气候和大气条件相关的数据。
 
-This repository contains an interactive Streamlit dashboard for exploring and storytelling with climate and atmospheric conditions data.
+			---
+
+			## 简介
+
+			该应用以“故事化数据可视化”为核心，通过交互式图表和过滤器，引导用户发现气候变量中的模式、趋势和异常。
+
+			## 快速开始
+
+			先确保已安装 Python 3.8+。
+
+			1. 克隆仓库并进入目录：
+
+			```bash
+			git clone git@github.com:MM1ng/data_viz.git
+			cd data_viz_project
+			```
+
+			2. 建议创建虚拟环境并激活：
+
+			```bash
+			python -m venv venv
+			# Windows
+			venv\\Scripts\\activate
+			# macOS / Linux
+			source venv/bin/activate
+			```
+
+			3. 安装依赖：
+
+			```bash
+			pip install -r requirements.txt
+			```
+
+			4. 将你的 CSV 数据放入 `data/` 目录（或者使用示例数据）。
+
+			5. 运行应用：
+
+			```bash
+			streamlit run app.py
+			```
+
+			---
+
+			## 项目结构
+
+			```
+			data_viz_project/
+			├── app.py                 # 主应用入口
+			├── requirements.txt       # 依赖
+			├── README.md              # 本文件
+			├── sections/              # 页面模块
+			├── utils/                 # 工具模块
+			├── data/                  # 数据目录（放置 CSV）
+			└── assets/                # 资源（logo 等）
+			```
+
+			---
+
+			## 功能
+
+			- 时间序列分析
+			- 变量分布与箱线图
+			- 天气类型比较
+			- 相关性热力图
+			- KPI 面板
+
+			## 数据集
+
+			名称：Climate and Atmospheric Conditions Data
+
+			来源：Kaggle
+
+			请将 CSV 文件放入 `data/` 文件夹，应用将自动加载第一个 CSV 文件。
+
+			---
+
+			## 开发说明
+
+			- 使用 `@st.cache_data` 优化数据加载。
+			- 模块化代码结构：`sections/` 存放页面，`utils/` 存放工具。
+
+			## 联系
+
+			- 胡家铭 / Jiaming Hu — jiaming.hu@efrei.net
+			- Mano Joseph Mathew — mano.mathew@efrei.fr
+		</td>
+		<td style="vertical-align:top; padding:18px; width:50%;">
+			## Climate and Atmospheric Conditions - Story
+
+			This repository contains an interactive Streamlit dashboard for exploring and storytelling with climate and atmospheric conditions data.
+
+			---
+
+			## Introduction
+
+			This app focuses on data storytelling, guiding users to discover patterns, trends, and anomalies in climate variables using interactive charts and filters.
+
+			## Quick Start
+
+			Make sure Python 3.8+ is installed.
+
+			1. Clone the repo and enter the directory:
+
+			```bash
+			git clone git@github.com:MM1ng/data_viz.git
+			cd data_viz_project
+			```
+
+			2. Create and activate a virtual environment (recommended):
+
+			```bash
+			python -m venv venv
+			# Windows
+			venv\\Scripts\\activate
+			# macOS / Linux
+			source venv/bin/activate
+			```
+
+			3. Install dependencies:
+
+			```bash
+			pip install -r requirements.txt
+			```
+
+			4. Place your CSV data into the `data/` directory (or use sample data provided).
+
+			5. Run the app:
+
+			```bash
+			streamlit run app.py
+			```
+
+			---
+
+			## Project Structure
+
+			```
+			data_viz_project/
+			├── app.py                 # Streamlit app
+			├── requirements.txt       # Python dependencies
+			├── README.md              # This file
+			├── sections/              # page modules
+			├── utils/                 # helpers (load, prep, viz)
+			├── data/                  # folder for CSV files
+			└── assets/                # resources (logos etc.)
+			```
+
+			---
+
+			## Features
+
+			- Time series analysis
+			- Distributions & box plots
+			- Weather-type comparisons
+			- Correlation heatmap
+			- KPI metrics
+
+			## Dataset
+
+			Name: Climate and Atmospheric Conditions Data
+
+			Source: Kaggle
+
+			Place your CSV in the `data/` folder; the app will automatically load the first CSV found.
+
+			---
+
+			## Development Notes
+
+			- Use `@st.cache_data` to cache data loading.
+			- Modular code: pages in `sections/`, helpers in `utils/`.
+
+			## Contact
+
+			- Jiaming Hu — jiaming.hu@efrei.net
+			- Mano Joseph Mathew — mano.mathew@efrei.fr
+		</td>
+	</tr>
+</table>
 
 ---
 
