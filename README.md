@@ -50,179 +50,130 @@ pip install -r requirements.txt
 4. **准备数据**
 
 从 [Kaggle数据集](https://www.kaggle.com/datasets/saadaliyaseen/climate-and-atmospheric-conditions-data/data) 下载数据文件，并将其放置在 `data/` 目录下。
+# 气候与大气条件数据故事仪表板 / Climate and Atmospheric Conditions - Story
 
-如果本地没有数据文件，应用会自动生成示例数据用于演示。
+本仓库包含一个基于 Streamlit 的交互式数据可视化仪表板，用于探索与讲述气候和大气条件相关的数据。
 
-5. **运行应用**
+This repository contains an interactive Streamlit dashboard for exploring and storytelling with climate and atmospheric conditions data.
+
+---
+
+## 目录 / Contents
+
+- 简介 / Introduction
+- 快速开始 / Quick Start
+- 项目结构 / Project Structure
+- 功能与使用 / Features & Usage
+- 数据集 / Dataset
+- 开发与扩展 / Development & Extensibility
+- 许可证与联系 / License & Contact
+
+---
+
+## 简介 / Introduction
+
+该应用以“故事化数据可视化”为核心，通过交互式图表和过滤器，引导用户发现气候变量中的模式、趋势和异常。
+
+This app focuses on data storytelling, guiding users to discover patterns, trends, and anomalies in climate variables using interactive charts and filters.
+
+## 快速开始 / Quick Start
+
+先确保已安装 Python 3.8+。
+
+1. 克隆仓库并进入目录：
+
+```bash
+git clone git@github.com:MM1ng/data_viz.git
+cd data_viz_project
+```
+
+2. 建议创建虚拟环境并激活：
+
+```bash
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# macOS / Linux
+source venv/bin/activate
+```
+
+3. 安装依赖：
+
+```bash
+pip install -r requirements.txt
+```
+
+4. 将你的 CSV 数据放入 `data/` 目录（或者使用示例数据）：
+
+Download the dataset from Kaggle and put the CSV in the `data/` folder, or use the sample data provided for demo purposes.
+
+5. 运行应用：
 
 ```bash
 streamlit run app.py
 ```
 
-应用将在浏览器中自动打开，默认地址为 `http://localhost:8501`
+打开浏览器访问 `http://localhost:8501`（或 Streamlit 输出的本地 URL）。
 
-## 项目结构
-
-```
-data_viz_project/
-├── app.py                 # 主应用文件
-├── requirements.txt       # Python依赖包
-├── README.md             # 项目说明文档
-├── sections/             # 页面模块
-│   ├── intro.py         # 介绍页面
-│   ├── overview.py      # 概览页面
-│   ├── deep_dives.py    # 深入分析页面
-│   └── conclusions.py   # 结论页面
-├── utils/                # 工具模块
-│   ├── io.py           # 数据加载
-│   ├── prep.py         # 数据预处理
-│   └── viz.py          # 可视化函数
-├── data/                # 数据目录（存放CSV文件）
-└── assets/              # 资源文件（图标、图片等）
-```
-
-## 功能特性
-
-### 数据可视化
-
-- **时间序列图表**：展示气候变量随时间的变化趋势
-- **地理分布地图**：可视化不同地理位置的气候条件
-- **分布直方图**：分析变量的统计分布特征
-- **箱线图**：比较不同组别之间的差异
-- **相关性热力图**：探索变量之间的关联关系
-- **柱状图**：地区间对比分析
-
-### 交互功能
-
-- **侧边栏过滤器**：
-  - 日期范围选择
-  - 地区多选
-  - 变量选择
-  
-- **交互式图表**：
-  - 缩放和平移
-  - 悬停提示
-  - 图例切换
-  - 数据点选择
-
-### 关键指标（KPI）
-
-- 平均温度
-- 平均湿度
-- 平均气压
-- 平均风速
-- 总降水量
-- 数据记录数
-
-### 数据质量报告
-
-- 缺失值统计
-- 重复记录检测
-- 数据完整性评分
-- 异常值识别
-
-## 使用指南
-
-### 导航结构
-
-1. **介绍页面**
-   - 项目背景和重要性
-   - 研究目标
-   - 数据集信息
-   - 数据注意事项
-
-2. **概览页面**
-   - 关键绩效指标（KPI）
-   - 时间趋势分析
-   - 地区比较
-
-3. **深入分析页面**
-   - 地理分布可视化
-   - 变量分布分析
-   - 分组比较
-   - 相关性分析
-
-4. **结论页面**
-   - 数据质量报告
-   - 关键洞察总结
-   - 实际应用启示
-   - 局限性与注意事项
-   - 下一步建议
-
-### 使用技巧
-
-1. **使用过滤器**：在侧边栏选择日期范围和地区，实时更新所有图表
-2. **交互式探索**：点击图表图例可以显示/隐藏数据系列
-3. **缩放查看**：使用鼠标滚轮或工具栏缩放图表
-4. **悬停查看**：将鼠标悬停在数据点上查看详细数值
-
-## 数据集信息
-
-- **数据集名称**：Climate and Atmospheric Conditions Data
-- **数据来源**：[Kaggle](https://www.kaggle.com/datasets/saadaliyaseen/climate-and-atmospheric-conditions-data/data)
-- **数据字段**：温度、湿度、气压、风速、降水、地理位置等
-
-## 技术栈
-
-- **Streamlit**：Web应用框架
-- **Pandas**：数据处理和分析
-- **Plotly**：交互式可视化
-- **NumPy**：数值计算
-
-## 开发说明
-
-### 代码结构
-
-- **模块化设计**：功能分离到不同模块，便于维护
-- **缓存优化**：使用 `@st.cache_data` 提高性能
-- **错误处理**：包含数据验证和异常处理
-- **代码注释**：详细的中文注释
-
-### 扩展建议
-
-- 添加更多可视化类型
-- 集成机器学习预测模型
-- 支持更多数据格式
-- 添加数据导出功能
-- 实现实时数据更新
-
-## 注意事项
-
-### 数据限制
-
-- 数据的时间跨度可能有限
-- 地理覆盖可能不完整
-- 可能存在缺失值和异常值
-- 数据可能不是实时更新的
-
-### 分析限制
-
-- 相关性不等于因果关系
-- 预测结果存在不确定性
-- 统计分析基于特定假设
-
-
-- 项目仓库：[GitHub链接]
-- 数据集链接：[Kaggle数据集](https://www.kaggle.com/datasets/saadaliyaseen/climate-and-atmospheric-conditions-data/data)
-
-### 本地部署
-
-```bash
-streamlit run app.py --server.port 8501
-```
-
-## 参考资料
-
-- [Streamlit文档](https://docs.streamlit.io/)
-- [Plotly Python文档](https://plotly.com/python/)
-- [Pandas文档](https://pandas.pydata.org/docs/)
-- [数据可视化最佳实践](https://www.data-to-viz.com/)
+Open the app in your browser at `http://localhost:8501` (or the local URL printed by Streamlit).
 
 ---
 
-**项目信息**：
-- 项目类型：数据可视化与故事讲述
-- 技术栈：Streamlit, Plotly, Pandas
-- 版本：1.0.0
-- 最后更新：2025年
+## 项目结构 / Project Structure
+
+```
+data_viz_project/
+├── app.py                 # 主应用入口 / Streamlit app
+├── requirements.txt       # 依赖 / Python dependencies
+├── README.md              # 本文件 / This README
+├── sections/              # 页面模块 / page modules
+├── utils/                 # 工具模块（加载、预处理、可视化）
+├── data/                  # 数据目录（放置 CSV）
+└── assets/                # 资源（logo 等）
+```
+
+---
+
+## 功能与使用 / Features & Usage
+
+- 时间序列分析 / Time series analysis
+- 变量分布与箱线图 / Distributions & box plots
+- 天气类型比较 / Weather-type comparisons
+- 相关性热力图 / Correlation heatmap
+- KPI 面板 / KPI metrics
+- 侧边栏过滤器（日期、变量、地区）/ Sidebar filters (date range, variables, regions)
+
+交互说明：在侧边栏选择语言（中/英）、页面和过滤条件，图表会实时更新。
+
+Interactions: use the sidebar to switch language (ZH/EN), pages and filters. Charts update interactively.
+
+---
+
+## 数据集 / Dataset
+
+- 名称 / Name: Climate and Atmospheric Conditions Data
+- 来源 / Source: Kaggle — https://www.kaggle.com/datasets/saadaliyaseen/climate-and-atmospheric-conditions-data/data
+
+将 CSV 文件放入 `data/` 文件夹，应用将自动加载第一个 CSV 文件。
+
+Place  CSV in the `data/` folder; the app will load the first CSV found automatically.
+
+---
+
+## 开发说明 / Development Notes
+
+- 使用 `@st.cache_data` 优化数据加载。
+- 模块化代码结构：`sections/` 存放页面，`utils/` 存放工具。
+- 若要扩展：添加新的可视化函数到 `utils/viz.py`，并在相应页面中调用。
+
+Use `@st.cache_data` to cache data loading. The code is modular: pages live in `sections/`, helpers in `utils/`. To extend, add visualization functions to `utils/viz.py` and call them from pages.
+
+---
+
+## 联系 / Contact
+
+- 胡家铭 / Jiaming Hu — jiaming.hu@efrei.net
+
+
+
 
